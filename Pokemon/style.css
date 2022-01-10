@@ -1,5 +1,8 @@
 body{
     background-color: #444444;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 /* Index.html */
@@ -154,6 +157,7 @@ flex-wrap: wrap;
     height: 10%;
     background-color: #252525;
     color: white;
+    margin-top: auto;
 }
 
 #cargando

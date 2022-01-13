@@ -5,7 +5,35 @@ body{
     flex-direction: column;
 }
 
+#imgWelcome
+{
+    width: 100%;
+    height: 100%;
+}
+
+video {
+    position:absolute;
+    z-index: -100;
+    top: 0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.capa {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#1c1c1d;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+}
+
 /* Index.html */
+
 
 .collapsing::after {
     transition: height 5s;
@@ -117,8 +145,8 @@ body{
 
 .imgPokemon
 {
-    width: 100%;
-    height: 600px;
+    width: 80%;
+    height: 400px;
 }
 
 .show-pokemon
@@ -126,6 +154,7 @@ body{
 display: flex;
 flex-direction: column;
 flex-wrap: wrap;
+align-items: center;
 }
 
 .poke-stats {
@@ -181,3 +210,9 @@ flex-wrap: wrap;
     align-items: center;
 }
 
+#match-list
+{
+    position: absolute;
+    margin-right: 0;
+    z-index: 1000;
+}

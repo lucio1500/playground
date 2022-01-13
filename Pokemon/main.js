@@ -1,4 +1,13 @@
 var pokemones = [];
+var search;
+var matchList
+if(document.getElementById("search")!=undefined)
+{
+    search = document.getElementById("search");
+    matchList = document.getElementById("match-list");
+}
+
+
 
 var offset = 1;
 var limit = 11;
@@ -83,19 +92,29 @@ async function searchPokemon(event)
 {
     event.preventDefault();
     let value = event.target.inpPokemon.value.toLowerCase();
-    if(value == '')
+    if(value.length>0)
     {
-        obtenerPrimerGeneracion();
+            let accorVerMas = document.getElementById("centrar");  
+            let boton = document.createElement('div');
+            boton.className = "text-center m-4";
+            boton.innerHTML =`<a href="#" class="col-2 btn btn-volver" onclick="obtenerPrimerGeneracion()"><<< Volver</a>`;
+            document.getElementById("contenedor").innerHTML = ``;
+            pokemones.forEach(pokemon =>{
+                if(pokemon.forms[0].name.includes(value))
+                {
+                    imprimirPokemon("contenedor",pokemon);
+                }
+                } );
+
+            document.getElementById("contenedor").appendChild(boton);
+            accorVerMas.style.display="none";
     }
-    else{
-        showSearch(await getPokemon(value.toLowerCase()));
-    }
-    
 }
 
 //obtiene e imprime la primer generacion de pokemon (los cuales son 151)
 const obtenerPrimerGeneracion = async  () =>
 {
+     pokemones = [];
      let data;
      let allPokemon = [];
      let j = 0;
@@ -188,28 +207,6 @@ async function obtenerSeeMorePokemon()
     pokemonName = pokemonName[1];  
     let data = await getPokemon(pokemonName);
     show(data);
-    let imagen = document.getElementById("img-mostrada");
-    let titulo = document.getElementById("titulo-mostrado");
-    const pag1 = document.getElementById("model-1");
-    const pag2 = document.getElementById("model-2");
-    const pag3 = document.getElementById("model-3");
-   
-
-    pag1.addEventListener("click", () => {
-        imagen.src= data.sprites.other.dream_world.front_default;
-        titulo.textContent = "MODEL 1";
-      });
-      
-      pag2.addEventListener("click", () => {
-        imagen.src= data.sprites.other.home.front_default;
-        titulo.textContent = "MODEL 2";
-      });
-    
-      pag3.addEventListener("click", () => {
-        imagen.src= data.sprites.other["official-artwork"].front_default;
-        titulo.textContent = "MODEL 3";
-      });
-
 }
 
 function show(data)
@@ -233,18 +230,31 @@ function show(data)
             <h4 id="" style="color: ${typeColors[data.types[0].type.name]};">Type: ${tipo}</h4>        
         </div>
 
-        <div class="col-6 show-pokemon mt-3"> 
+        <div class="col-6 show-pokemon mt-3 mb-2"> 
 
-        <h4 class="col-12 text-center"  id="titulo-mostrado">MODEL 1</h4>  
-        <img src="${imagen[0]}" class="col-12 imgPokemon" id="img-mostrada" style="filter: drop-shadow(0 5px 15px ${typeColors[data.types[0].type.name]}); "> 
+                <div id="carouselDark" class="carousel slide col-12" data-bs-ride="carousel">
+                    <button class="carousel-control-prev col-1" type="button" data-bs-target="#carouselDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    </button>
+                <div class="carousel-inner col-10">
+                    <div class="carousel-item active col-12 text-center">
+                        <h4 class="col-12 text-center"  id="titulo-mostrado">MODEL 1</h4>  
+                        <img src="${imagen[0]}" class="col-12 imgPokemon" id="img-mostrada" style="filter: drop-shadow(0 5px 15px ${typeColors[data.types[0].type.name]}); "> 
+                    </div>
+                    <div class="carousel-item col-12 text-center">
+                        <h4 class="col-12 text-center"  id="titulo-mostrado">MODEL 2</h4>  
+                        <img src="${imagen[1]}" class="col-12 imgPokemon" id="img-mostrada" style="filter: drop-shadow(0 5px 15px ${typeColors[data.types[0].type.name]}); "> 
+                    </div>
+                    <div class="carousel-item col-12 text-center">
+                        <h4 class="col-12 text-center"  id="titulo-mostrado">MODEL 3</h4>  
+                        <img src="${imagen[2]}" class="col-12 imgPokemon" id="img-mostrada" style="filter: drop-shadow(0 5px 15px ${typeColors[data.types[0].type.name]}); "> 
+                    </div>
+                </div>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination display-flex justify-content-center mt-4 mb-0">
-                    <li id="model-1" class="page-item m-2"><a class="page-link btn-volver border-0" href="#">1</a></li>
-                    <li id="model-2" class="page-item m-2"><a class="page-link btn-volver border-0" href="#">2</a></li>
-                    <li id="model-3" class="page-item m-2"><a class="page-link btn-volver border-0" href="#">3</a></li>
-                </ul>
-            </nav>
+                    <button class="carousel-control-next col-1" type="button" data-bs-target="#carouselDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    </button>
+            </div>
 
         </div>
        
@@ -267,22 +277,63 @@ function show(data)
 
 }
 
-function showSearch(data)
-{
-    let accorVerMas = document.getElementById("centrar");  
-    let boton = document.createElement('div');
-    boton.className = "text-center m-4";
-    boton.innerHTML =`<a href="#" class="col-2 btn btn-volver" onclick="obtenerPrimerGeneracion()"><<< Volver</a>`;
+// const searchSt = async searchText => {
+//     const res = pokemones;
+//     let matches = pokemones.filter(name => {
+//         const regex = new RegExp(`${searchText}`, 'gi')
+//         return name.forms[0].name.match(regex);
+//     })
+
+//     if (searchText.length === 0)
+//     {
+//         matches = [];
+//         matchList.innerHTML = ``;
+//     }
+
+//     outputHtml(matches);
+// } ;
+
+// const outputHtml = matches => {
+//     if (matches.length > 0)
+//     {
+//         const html = matches
+//         .map(
+//             match => `
+//             <div class="card card-body mb-1">
+//                 <h4> ${match.forms[0].name} </h4>
+//             </div>
+//             `
+//         )
+//         .join('');
+        
+//         matchList.innerHTML = html;
+//     }
+// };
+
+// if(document.getElementById("search")!=undefined)
+// {
+//     search.addEventListener('input',()=> searchSt(search.value));
+// }
+
+
+
+
+// function showSearch(data)
+// {
+//     let accorVerMas = document.getElementById("centrar");  
+//     let boton = document.createElement('div');
+//     boton.className = "text-center m-4";
+//     boton.innerHTML =`<a href="#" class="col-2 btn btn-volver" onclick="obtenerPrimerGeneracion()"><<< Volver</a>`;
     
     
-    if(document.getElementById("contenedor")!= undefined)
-    {
-        document.getElementById("contenedor").innerHTML = ``;
-        imprimirPokemon("contenedor",data);
-        document.getElementById("contenedor").appendChild(boton);
-        accorVerMas.style.display="none";
-    }
-}
+//     if(document.getElementById("contenedor")!= undefined)
+//     {
+//         // document.getElementById("contenedor").innerHTML = ``;
+//         imprimirPokemon("contenedor",data);
+//         document.getElementById("contenedor").appendChild(boton);
+//         accorVerMas.style.display="none";
+//     }
+// }
 
 obtenerPrimerGeneracion();
 

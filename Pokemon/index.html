@@ -13,9 +13,14 @@
 <body>
     <nav class="navbar navbar-expand-sm nav-index">
         <div class="container-fluid">
+          
           <picture id="pokemon-logo"></picture>
+          
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <p id="saludo" class="m-0 p-2 text-center">Welcome </p>
+              </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
@@ -25,7 +30,9 @@
                   <option selected value="all"> All </option>               
                 </select>
               </li>
+              
             </ul>
+            
             <form action="" class="d-flex col-3" onsubmit="searchPokemon(event)">
               <input id="search" class="form-control me-2" type="text" name="inpPokemon" placeholder="Enter id or name" autocomplete="off" aria-label="Search">
               <button class="btn btn-outline-success" for="inpPokemon" type="submit">Search</button>   

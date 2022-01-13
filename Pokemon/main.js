@@ -7,6 +7,10 @@ if(document.getElementById("search")!=undefined)
     matchList = document.getElementById("match-list");
 }
 
+var localName = localStorage.getItem("nombre");
+
+document.getElementById("saludo").innerHTML+=localName;
+console.log(localName);
 
 
 var offset = 1;

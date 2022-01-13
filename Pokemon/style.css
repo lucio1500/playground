@@ -5,6 +5,15 @@ body{
     flex-direction: column;
 }
 
+#welcome-container
+{
+    z-index: 100;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 40px;
+}
+
 #imgWelcome
 {
     width: 100%;

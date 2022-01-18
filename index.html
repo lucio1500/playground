@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+    <link rel="shortcut icon" href="./images/pokemon-logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm nav-index">
+        <div class="container-fluid">
+          
+          <picture id="pokemon-logo"></picture>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <p id="saludo" class="m-0 p-2 text-center">Welcome </p>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <label class="m-0 p-2 text-center" for="tipos">Select pokemon types: </label>
+                <select class="btn m-0 p-2 text-center" name="tipos" id="selectTipo" onchange="obtenerPrimerGeneracion()">        
+                  <option selected value="all"> All </option>               
+                </select>
+              </li>
+              
+            </ul>
+            
+            <form action="" class="d-flex col-3" onsubmit="searchPokemon(event)">
+              <input id="search" class="form-control me-2" type="text" name="inpPokemon" placeholder="Enter id or name" autocomplete="off" aria-label="Search">
+              <button class="btn btn-outline-success" for="inpPokemon" type="submit">Search</button>   
+              
+            </form>
+            <div class="" id="match-list"></div>          
+          </div>
+        </div>
+      </nav>
+
+    <div class="container-fluid row m-0 p-0"  id="contenedor">
+       
+    
+    </div> 
+<div id="centrar" class="justify-content-center col-12 mb-5">
+    <div class="accordion-item justify-content-center align-items-center col-12 m-0">
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div id="body-acor" class="accordion-body style-body col-12">
+              
+            </div>
+          </div>  
+          <h2 class="accordion-header justify-content-center col-2 text-center" id="headingTwo">
+            <button id="btn-ver-mas" class="accordion-button justify-content-center btn-volver collapsed col-2 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Ver Todos
+            </button>
+          </h2>
+        </div>
+</div>
+    
+
+    <footer class="footer">
+      <todo-footer
+        v-for="item in textos"
+        v-bind:texto="item.texto"
+        v-bind:link="item.link"
+      ></todo-footer>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

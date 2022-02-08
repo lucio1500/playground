@@ -9,9 +9,11 @@ if(document.getElementById("search")!=undefined)
 
 var localName = localStorage.getItem("nombre");
 
+if(document.getElementById("saludo")!=undefined)
+{
 document.getElementById("saludo").innerHTML+=localName;
 console.log(localName);
-
+}
 
 var offset = 1;
 var limit = 11;

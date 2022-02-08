@@ -4,76 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon</title>
+    <title>Welcome</title>
     <link rel="shortcut icon" href="./images/pokemon-logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    
 </head>
-<body>
-    <nav class="navbar navbar-expand-sm nav-index">
-        <div class="container-fluid">
-          
-          <picture id="pokemon-logo"></picture>
-          
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <p id="saludo" class="m-0 p-2 text-center">Welcome </p>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <label class="m-0 p-2 text-center" for="tipos">Select pokemon types: </label>
-                <select class="btn m-0 p-2 text-center" name="tipos" id="selectTipo" onchange="obtenerPrimerGeneracion()">        
-                  <option selected value="all"> All </option>               
-                </select>
-              </li>
-              
-            </ul>
-            
-            <form action="" class="d-flex col-3" onsubmit="searchPokemon(event)">
-              <input id="search" class="form-control me-2" type="text" name="inpPokemon" placeholder="Enter id or name" autocomplete="off" aria-label="Search">
-              <button class="btn btn-outline-success" for="inpPokemon" type="submit">Search</button>   
-              
-            </form>
-            <div class="" id="match-list"></div>          
-          </div>
-        </div>
-      </nav>
+<body>   
+        <div class="capa"></div>
+        <video muted autoplay loop>
+            <source src="./video/videoWelcome.mp4" type="video/mp4">
+        </video>
 
-    <div class="container-fluid row m-0 p-0"  id="contenedor">
-       
-    
-    </div> 
-<div id="centrar" class="justify-content-center col-12 mb-5">
-    <div class="accordion-item justify-content-center align-items-center col-12 m-0">
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div id="body-acor" class="accordion-body style-body col-12">
-              
+
+    <main class="container-fluid m-0 p-0 d-flex justify-content-center align-items-center" style="height: 100vh;">
+
+        <div class="d-flex align-items-center p-2" id="welcome-container">
+            <div class="col-6 text-center">
+                <img src="https://imagenpng.com/wp-content/uploads/2016/09/Pikachu-png-0.png" id="imgWelcome">
+            </div>   
+            <div class="col-6">
+                <h1>
+                    Welcome to my Pokedex.
+                </h1>
+                <form action="menu.html" class="col-12" onsubmit="cargaNombre(event)">
+                    <label class="m-2" for="loadName"> Enter Your Name and Continue to the Pokedex. </label>
+                    <input id="loadName" class="form-control col-1 me-2 border-2 border-success" type="text" name="inpName" placeholder="Enter your name" autocomplete="off">
+                    <button class="btn btn-success m-2" for="inpName" type="submit">Confirm</button>             
+                </form>
             </div>
-          </div>  
-          <h2 class="accordion-header justify-content-center col-2 text-center" id="headingTwo">
-            <button id="btn-ver-mas" class="accordion-button justify-content-center btn-volver collapsed col-2 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Ver Todos
-            </button>
-          </h2>
+
         </div>
-</div>
-    
+     
 
-    <footer class="footer">
-      <todo-footer
-        v-for="item in textos"
-        v-bind:texto="item.texto"
-        v-bind:link="item.link"
-      ></todo-footer>
-    </footer>
+    </main>
 
-    
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="./main.js"></script>
+    <script src="./welcome.js"></script>
 </body>
 </html>

@@ -68,7 +68,11 @@ const getPokemon = async  (id) =>
 //completa las options del select que se utiliza para el filtro de tipos.
 function completarTipos(allPokemones)
 {
-   let arrayTipos = [];
+   if(document.getElementById("selectTipo")!=undefined && document.getElementById("selectTipo").length<2)
+   {   
+       
+    let arrayTipos = [];
+
    for(let i=0; i<allPokemones.length;i++)
     { 
       if(!arrayTipos.includes(allPokemones[i].types[0].type.name))
@@ -79,8 +83,7 @@ function completarTipos(allPokemones)
 
    arrayTipos.sort();
 
-   if(document.getElementById("selectTipo")!=undefined)
-   {
+
       for(let i=0; i<arrayTipos.length;i++)
         { 
           let tipo = arrayTipos[i];
@@ -282,64 +285,6 @@ function show(data)
 
 
 }
-
-// const searchSt = async searchText => {
-//     const res = pokemones;
-//     let matches = pokemones.filter(name => {
-//         const regex = new RegExp(`${searchText}`, 'gi')
-//         return name.forms[0].name.match(regex);
-//     })
-
-//     if (searchText.length === 0)
-//     {
-//         matches = [];
-//         matchList.innerHTML = ``;
-//     }
-
-//     outputHtml(matches);
-// } ;
-
-// const outputHtml = matches => {
-//     if (matches.length > 0)
-//     {
-//         const html = matches
-//         .map(
-//             match => `
-//             <div class="card card-body mb-1">
-//                 <h4> ${match.forms[0].name} </h4>
-//             </div>
-//             `
-//         )
-//         .join('');
-        
-//         matchList.innerHTML = html;
-//     }
-// };
-
-// if(document.getElementById("search")!=undefined)
-// {
-//     search.addEventListener('input',()=> searchSt(search.value));
-// }
-
-
-
-
-// function showSearch(data)
-// {
-//     let accorVerMas = document.getElementById("centrar");  
-//     let boton = document.createElement('div');
-//     boton.className = "text-center m-4";
-//     boton.innerHTML =`<a href="#" class="col-2 btn btn-volver" onclick="obtenerPrimerGeneracion()"><<< Volver</a>`;
-    
-    
-//     if(document.getElementById("contenedor")!= undefined)
-//     {
-//         // document.getElementById("contenedor").innerHTML = ``;
-//         imprimirPokemon("contenedor",data);
-//         document.getElementById("contenedor").appendChild(boton);
-//         accorVerMas.style.display="none";
-//     }
-// }
 
 obtenerPrimerGeneracion();
 

@@ -67,33 +67,31 @@ const getPokemon = async  (id) =>
 
 //completa las options del select que se utiliza para el filtro de tipos.
 function completarTipos(allPokemones)
-{
-   if(document.getElementById("selectTipo")!=undefined && document.getElementById("selectTipo").length<2)
-   {   
-       
-    let arrayTipos = [];
+{   
+    if(document.getElementById("selectTipo")!=undefined && document.getElementById("selectTipo").length<2)
+    {      
+        let arrayTipos = [];
 
-   for(let i=0; i<allPokemones.length;i++)
-    { 
-      if(!arrayTipos.includes(allPokemones[i].types[0].type.name))
-      {
-        arrayTipos.push(allPokemones[i].types[0].type.name);     
-      }
+        for(let i=0; i<allPokemones.length;i++)
+            { 
+                if(!arrayTipos.includes(allPokemones[i].types[0].type.name))
+                {
+                    arrayTipos.push(allPokemones[i].types[0].type.name);     
+                }
+            }
+
+        arrayTipos.sort();
+
+            for(let i=0; i<arrayTipos.length;i++)
+                { 
+                let tipo = arrayTipos[i];
+                let option = document.createElement("option");
+                option.className = "text-center m-0";
+                option.value =  `${arrayTipos[i]}`
+                option.innerHTML = `${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`;
+                document.getElementById("selectTipo").appendChild(option);
+                }
     }
-
-   arrayTipos.sort();
-
-
-      for(let i=0; i<arrayTipos.length;i++)
-        { 
-          let tipo = arrayTipos[i];
-          let option = document.createElement("option");
-          option.className = "text-center m-0";
-          option.value =  `${arrayTipos[i]}`
-          option.innerHTML = `${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`;
-          document.getElementById("selectTipo").appendChild(option);
-        }
-   }
 }
 
 //busca un pokemon por nombre o id. 
@@ -196,7 +194,7 @@ function imprimirPokemon(idHtml ,data)
         <h5 class="card-title">${nombre}</h5>
         
         <p class="card-text" name="tipo">Type: ${tipo}</p>
-        <a href="./show_pokemon.html?idpoke=${data.id}" class="btn btn-link" target="_blank" id="${nombre}">See more...</a>
+        <a href="./show_pokemon.html?idpoke=${data.id}" class="btn btn-link" id="${nombre}">See more...</a>
         </div>
     `;
 
